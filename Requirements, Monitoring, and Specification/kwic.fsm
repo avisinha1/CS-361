@@ -1,0 +1,46 @@
+begin: start
+
+
+state: start
+callConstructor -> PreInput
+
+
+state: PreInput
+callIndex -> PreInput
+callListPairs -> PreInput
+callAddText -> PreProcessing
+
+
+state: PreProcessing
+callAddText -> PreProcessing
+callIndex -> PostIndex
+callReset -> PreInput
+callListPairs -> pairsGenerated
+
+
+state: PostIndex
+callListPairs -> PreProcessing
+callIndex -> errorHandling
+callReset -> PreInput
+callAddText -> PreProcessing
+
+
+state: PairsGenerated
+callIndex -> PostProcessing
+callReset -> PreInput
+callIndex -> errorHandling
+callListPairs -> errorHandling
+
+
+state: PostProcessing
+callAddText -> stringInputted
+callReset -> PreInput
+callIndex -> errorHandling
+callListPairs -> errorHandling
+
+
+state: errorHandling
+callAddText -> PreProcessing
+callReset -> PreInput
+callIndex -> errorHandling
+callListPairs -> errorHandling
